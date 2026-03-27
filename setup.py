@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='cbpi4-TimedCyleActor',
+setup(name='cbpi4-TimedCycleActor',
       version='0.0.1',
       description='CraftBeerPi Plugin',
       author='',
@@ -10,6 +10,6 @@ setup(name='cbpi4-TimedCyleActor',
       package_data={
         # If any package contains *.txt or *.rst files, include them:
       '': ['*.txt', '*.rst', '*.yaml'],
-      'cbpi4-TimedCyleActor': ['*','*.txt', '*.rst', '*.yaml']},
-      packages=['cbpi4-TimedCyleActor'],
+      'cbpi4-TimedCycleActor': ['*','*.txt', '*.rst', '*.yaml']},
+      packages=['cbpi4-TimedCycleActor'],
      )
