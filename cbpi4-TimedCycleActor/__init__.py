@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
             Property.Select(label="cycle_time", options=["High", "Low"],description="The time in minutes between every on_time period."),
             Property.Select(label="notification", options=["Yes", "No"], description="Will show notification when GPIO switches actor off")])
 
-class GPIODependentActor(CBPiActor):
+class TimedCycleActor(CBPiActor):
 
     async def wait_for_input(self):
         while not self.interrupt:
@@ -79,6 +79,6 @@ class GPIODependentActor(CBPiActor):
 
 
 def setup(cbpi):
-    cbpi.plugin.register("GPIO Dependent Actor", GPIODependentActor)
+    cbpi.plugin.register("Timed Cycle Actor", TimedCycleActor)
     pass
 
