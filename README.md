@@ -14,12 +14,6 @@
 - Installation:
 	- log in via ssh 
 	- clone from the GIT repo
-	- sudo pip install ./cbpi4-GPIODependentActor
-	- cbpi add cbpi4-GPIODependentActor
-	
-- Changelog:
-	- 04.09.21: Initial commit
-	
-- Known Problems:
-	- Not tested on my system as I have no GPIO inputs (User confirmation required) -> Therefore ALPHA version
-	- When GPIO switches off the actor, the state for this actor is not updated in the UI. The dependent actor state is updated. Further investigation required for fix
+	- source <path to pipx>/pipx/venvs/cbpi4/bin/activate
+	- python -m pip install <path to rep>/cbpi4-TimedCycleActor
+
