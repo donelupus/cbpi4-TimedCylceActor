@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
 import asyncio
-import importlib
 from cbpi.api import *
 import RPi.GPIO as GPIO
-import os
 from cbpi.api.dataclasses import NotificationType
 
 
@@ -33,8 +31,8 @@ class Logger():
         self.cbpi.notify("StepperMotorActor", message, NotificationType.ERROR)
 
 @parameters([Property.Number(label="GPIO_Control", description="GPIO [BMC numbering] of upper Level Sensor"), 
-            Property.Number(label="on_time",default_value = 90, description="The time in seconds the actor will be switched on every cycle_time min."),
-            Property.Number(label="cycle_time",default_value = 12, description="The time in minutes between every on_time period.")])
+            Property.Number(label="on_time",default_value = 90, description="The time in seconds the actor will be switched on every cycle_time min (default: 90 sec)."),
+            Property.Number(label="cycle_time",default_value = 12, description="The time in minutes between every on_time period (default: 12 min).")])
 
 
 class TimedCycleActor(CBPiActor):
@@ -75,8 +73,6 @@ class TimedCycleActor(CBPiActor):
         self.cbpi.notify("StepperMotorActor", f"ACTOR {self.id} ON", NotificationType.INFO)
         self.state = True
 
-        await self.set_power(power)
-
     def get_state(self):
         '''
         This method is called e.g. by server functions to read the state of the actor
@@ -92,11 +88,7 @@ class TimedCycleActor(CBPiActor):
         self.logger.info(f"ACTOR {self.id} OFF")
         GPIO.output(int(self.gpio_control), GPIO.LOW)
         self.state = False
-    async def set_power(self, power):
-        '''
-        Dummy set_power method for testing.
-        '''
-        pass
+
     async def run(self):
         '''
         This asyncio coroutine is continuously running, while the actor is available in the system.
